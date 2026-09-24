@@ -1,60 +1,117 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-const Login = ({ setIsAuthenticated }) => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    setError(null);
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
 
-    const response = await fetch("/api/users/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-    const user = await response.json();
+        console.log("Email:", email);
+        console.log("Password:", password);
+    };
 
-    if (!response.ok) {
-      setError(user.error);
-      return;
-    }
+    return (
+        <div className="log-in">
+            <h2>Log in</h2>
 
-    localStorage.setItem("user", JSON.stringify(user));
-    console.log("success");
-    setIsAuthenticated(true);
-    navigate("/");
-  };
+            <form onSubmit={handleFormSubmit}>
 
-return (
-    <div className="Log - In">
-        <h2> Log in</h2>
-        <form onSubmit={handleFormSubmit}>
-            <label>
-                Email Address:
-            </label>
+                <label>
+                    Email Address:
+                </label>
 
-            <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
 
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+                <label>
+                    Password:
+                </label>
 
-            <button>Log in</button>
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
 
-        </form>
+                <button type="submit">
+                    Log in
+                </button>
 
-    </div>
-)};
+            </form>
+        </div>
+    );
+};
 
 export default Login;
+
+
+
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+
+// const Login = ({ setIsAuthenticated }) => {
+//   const navigate = useNavigate();
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [error, setError] = useState(null);
+
+//   const handleFormSubmit = async (e) => {
+//     e.preventDefault();
+//     setError(null);
+
+//     const response = await fetch("/api/users/login", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ email, password }),
+//     });
+//     const user = await response.json();
+
+//     if (!response.ok) {
+//       setError(user.error);
+//       return;
+//     }
+
+//     localStorage.setItem("user", JSON.stringify(user));
+//     console.log("success");
+//     setIsAuthenticated(true);
+//     navigate("/");
+//   };
+
+// return (
+//     <div className="Log - In">
+//         <h2> Log in</h2>
+//         <form onSubmit={handleFormSubmit}>
+//             <label>
+//                 Email Address:
+//             </label>
+
+//             <input
+//                 type="email"
+//                 value={email}
+//                 onChange={(e) => setEmail(e.target.value)}
+//             />
+
+//             <label>
+//                 Password: 
+//             </label>
+//             <input
+//                 type="password"
+//                 value={password}
+//                 onChange={(e) => setPassword(e.target.value)}
+//             />
+
+//             <button>Log in</button>
+
+//         </form>
+
+//     </div>
+// )};
+
+// export default Login;
