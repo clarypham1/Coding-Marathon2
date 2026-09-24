@@ -19,6 +19,16 @@ const Login = ({ setIsAuthenticated }) => {
         // Clear previous error
         setError(null);
 
+        const loginInformation = {
+            email: email,
+            password: password
+        }
+
+        if (email !== "test@gmail.com" || password !== "11111111")
+        {setError ("username or email is wrong");
+            return;
+        }
+
         try {
             const response = await fetch("/api/users/login", {
                 method: "POST",
