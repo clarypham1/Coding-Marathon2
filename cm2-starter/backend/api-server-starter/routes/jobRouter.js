@@ -3,7 +3,7 @@ const express = require("express");
 const {
     
     getAllJobs,
-    getAllJobsById,
+    getJobById,
     createJob,
     updateJob,
     deleteJob,
@@ -13,7 +13,7 @@ const {
 const router = express.Router();
 
 get.router("/", getAllJobs);
-get.router("/:jobId", getAllJobsById);
+get.router("/:jobId", getJobById);
 get.router("/", createJob);
 get.router("/:jobId", updateJob);
 get.router("/:jobId", deleteJob);
