@@ -8,7 +8,7 @@ const {
     updateJob,
     deleteJob,
 
-} = require("../controllers/jobController");
+} = require("../controllers/jobControllers");
 
 const router = express.Router();
 
