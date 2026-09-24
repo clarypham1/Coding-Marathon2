@@ -1,3 +1,5 @@
+//jobrouter
+
 const express = require("express");
 
 const {
@@ -10,7 +12,10 @@ const {
 
 } = require("../controllers/jobControllers");
 
+const requireAuth = require('../middleware/requireAuth');
 const router = express.Router();
+
+router.use(requireAuth);
 
 get.router("/", getAllJobs);
 get.router("/:jobId", getJobById);

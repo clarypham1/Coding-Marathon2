@@ -1,3 +1,5 @@
+//jobmodel
+
 const mongoose = require('mongoose');
 
 const jobSchema = new mongoose.Schema({
@@ -28,4 +30,5 @@ jobSchema.set('toJSON', {
 const Job = mongoose.model('Job', jobSchema);
 
 module.exports = Job;
+
 
