@@ -7,13 +7,14 @@ const Signup = ({ signupSubmit }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [error, setError] = useState('');
 
    const navigate = useNavigate();
   const submitForm = async (e) => {
     e.preventDefault();
     setError(null);
 
-    const response = await fetch("/api/users/signup", {
+      const response = await fetch("/api/users/signup", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ name, email, password, phone_number: phoneNumber, }),
@@ -41,7 +42,7 @@ const Signup = ({ signupSubmit }) => {
             <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} required />
             <label> Phone Number: </label>
             <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
-            <button> SIGN UP  </button>
+            <button type="submit"> SIGN UP  </button>
             {error && <p className="error">{error}</p>}
         </form>
     </div>
