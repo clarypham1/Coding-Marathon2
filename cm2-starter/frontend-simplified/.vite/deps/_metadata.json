@@ -1,0 +1,52 @@
+{
+  "hash": "faa0144c",
+  "configHash": "24d4a0a9",
+  "lockfileHash": "599dac09",
+  "browserHash": "10bbb9e9",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "20f1a177",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "3dfe02a6",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "795a5e46",
+      "needsInterop": false
+    },
+    "react-toastify": {
+      "src": "../../node_modules/react-toastify/dist/index.mjs",
+      "file": "react-toastify.js",
+      "fileHash": "93592c18",
+      "needsInterop": false
+    },
+    "react-icons/fa": {
+      "src": "../../node_modules/react-icons/fa/index.mjs",
+      "file": "react-icons_fa.js",
+      "fileHash": "c352ab76",
+      "needsInterop": false
+    },
+    "react-spinners/ClipLoader": {
+      "src": "../../node_modules/react-spinners/ClipLoader.js",
+      "file": "react-spinners_ClipLoader.js",
+      "fileHash": "e359f609",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-XF3MVX4F": {
+      "file": "chunk-XF3MVX4F.js"
+    },
+    "chunk-U6GU3BNQ": {
+      "file": "chunk-U6GU3BNQ.js"
+    }
+  }
+}
