@@ -1,63 +1,96 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ setIsAuthenticated }) => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    setError(null);
+    // Store email typed by the user
+    const [email, setEmail] = useState("");
 
-    const response = await fetch("/api/users/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-    const user = await response.json();
+    // Store password typed by the user
+    const [password, setPassword] = useState("");
 
-    if (!response.ok) {
-      setError(user.error);
-      return;
-    }
+    // Store error message
+    const [error, setError] = useState(null);
 
-    localStorage.setItem("user", JSON.stringify(user));
-    console.log("success");
-    setIsAuthenticated(true);
-    navigate("/");
-  };
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
 
-return (
-    <div className="Log - In">
-        <h2> Log in</h2>
-        <form onSubmit={handleFormSubmit}>
-            <label>
-                Email Address:
-            </label>
+        // Clear previous error
+        setError(null);
 
-            <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+        try {
+            const response = await fetch("/api/users/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                }),
+            });
 
-            <label>
-                Password: 
-            </label>
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+            const user = await response.json();
 
-            <button>Log in</button>
+            console.log("Response status:", response.status);
+            console.log("Response data:", user);
 
-        </form>
+            // If login failed
+            if (!response.ok) {
+                setError(user.error);
+                return;
+            }
 
-    </div>
-)};
+            // Save logged-in user
+            localStorage.setItem("user", JSON.stringify(user));
+
+            console.log("Login successful");
+
+            // Tell App that the user is authenticated
+            setIsAuthenticated(true);
+
+            // Go to home page
+            navigate("/");
+        } catch (error) {
+            console.error("Login request failed:", error);
+            setError("Something went wrong. Please try again.");
+        }
+    };
+
+    return (
+        <div className="Log-In">
+            <h2>Log in</h2>
+
+            <form onSubmit={handleFormSubmit}>
+                <label>
+                    Email Address:
+                </label>
+
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+
+                <label>
+                    Password:
+                </label>
+
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <button type="submit">
+                    Log in
+                </button>
+
+                {error && <p>{error}</p>}
+            </form>
+        </div>
+    );
+};
 
 export default Login;
