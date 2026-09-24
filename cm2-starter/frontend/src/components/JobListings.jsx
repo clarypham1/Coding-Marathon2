@@ -34,9 +34,11 @@ const JobListings = ({ isHome = false }) => {
           <Spinner loading={loading} />
         ) : (
           <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-            {jobs.map((job) => (
+            {jobs.length === 0? (
+              <p>No jobs available at this moment</p>):
+            (jobs.map((job) => (
               <JobListing key={job.id} job={job} />
-            ))}
+            )))}
           </div>
         )}
       </div>

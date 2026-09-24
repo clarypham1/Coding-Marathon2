@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 
 const Navbar = () => {
@@ -28,6 +28,9 @@ const Navbar = () => {
                 </NavLink>
                 <NavLink to='/add-job' className={linkClass}>
                   Add Job
+                </NavLink>
+                <NavLink to='/login' className={linkClass}>
+                  Log in
                 </NavLink>
               </div>
             </div>
